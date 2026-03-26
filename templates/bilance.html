@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-bg"></div>
+
+    <div class="container">
+        <header class="hero small-hero">
+            <div>
+                <p class="eyebrow">Kopsavilkums</p>
+                <h1>Bilances pārskats</h1>
+                <p class="subtitle">
+                    Šeit vari ātri apskatīt kopējos ienākumus, izdevumus un gala bilanci.
+                </p>
+            </div>
+
+            <nav class="nav">
+                <a class="nav-btn" href="/">Sākums</a>
+                <a class="nav-btn nav-btn-secondary" href="/bilance">Bilance</a>
+            </nav>
+        </header>
+
+        <section class="summary-grid big-summary">
+            <div class="summary-card income">
+                <span class="summary-label">Kopējie ienākumi</span>
+                <h3>{{ "%.2f"|format(ienakumi) }} €</h3>
+            </div>
+
+            <div class="summary-card expense">
+                <span class="summary-label">Kopējie izdevumi</span>
+                <h3>{{ "%.2f"|format(izdevumi) }} €</h3>
+            </div>
+
+            <div class="summary-card balance">
+                <span class="summary-label">Kopējā bilance</span>
+                <h3>{{ "%.2f"|format(bilance) }} €</h3>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
