@@ -1,50 +1,80 @@
 <!DOCTYPE html>
+<!-- Norāda, ka dokuments ir HTML5 -->
+
 <html lang="lv">
+<!-- Lapas valoda – latviešu -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- Pareizai latviešu burtu attēlošanai -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Nodrošina responsive dizainu uz mobilajām ierīcēm -->
+
     <title>Budžeta plānotājs</title>
+    <!-- Lapas nosaukums pārlūkā -->
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- CSS faila pievienošana caur Flask -->
 </head>
+
 <body>
+    <!-- Dekoratīvais fona slānis -->
     <div class="page-bg"></div>
 
+    <!-- Galvenais konteineris -->
     <div class="container">
+
+        <!-- Augšējā hero sadaļa -->
         <header class="hero">
             <div>
+                <!-- Mazais virsraksts -->
                 <p class="eyebrow">Personīgās finanses</p>
+
+                <!-- Galvenais virsraksts -->
                 <h1>Budžeta plānotājs</h1>
+
+                <!-- Apraksts -->
                 <p class="subtitle">
                     Pārvaldi savus ienākumus un izdevumus vienkārši, pārskatāmi un moderni.
                 </p>
             </div>
 
+            <!-- Navigācijas izvēlne -->
             <nav class="nav">
                 <a class="nav-btn" href="/">Sākums</a>
                 <a class="nav-btn nav-btn-secondary" href="/bilance">Bilance</a>
             </nav>
         </header>
 
+        <!-- Kļūdas ziņojuma attēlošana (ja tāds ir) -->
         {% if kluda %}
         <div class="alert">
             {{ kluda }}
         </div>
         {% endif %}
 
+        <!-- Galvenais saturs sadalīts divās kolonnās -->
         <section class="top-grid">
+
+            <!-- Forma jauna ieraksta pievienošanai -->
             <div class="card form-card">
                 <div class="section-head">
                     <h2>Jauns ieraksts</h2>
                     <p>Pievieno ienākumu vai izdevumu</p>
                 </div>
 
+                <!-- Forma nosūta datus uz Flask maršrutu /pievienot -->
                 <form method="post" action="/pievienot" class="modern-form">
                     <div class="form-grid">
+
+                        <!-- Datuma ievade -->
                         <div class="input-group">
                             <label for="datums">Datums</label>
                             <input type="date" id="datums" name="datums">
                         </div>
 
+                        <!-- Ieraksta tips -->
                         <div class="input-group">
                             <label for="tips">Tips</label>
                             <select id="tips" name="tips">
@@ -53,39 +83,51 @@
                             </select>
                         </div>
 
+                        <!-- Summas ievade -->
                         <div class="input-group">
                             <label for="summa">Summa (€)</label>
                             <input type="text" id="summa" name="summa" placeholder="Piemēram, 150.00" required>
                         </div>
 
+                        <!-- Apraksts -->
                         <div class="input-group input-full">
                             <label for="apraksts">Apraksts</label>
                             <input type="text" id="apraksts" name="apraksts" placeholder="Piemēram, Alga vai Pārtika" required>
                         </div>
                     </div>
 
+                    <!-- Poga ieraksta pievienošanai -->
                     <button type="submit" class="primary-btn">Pievienot ierakstu</button>
                 </form>
             </div>
 
+            <!-- Kopsavilkuma kartītes -->
             <div class="summary-grid">
+
+                <!-- Ienākumi -->
                 <div class="summary-card income">
                     <span class="summary-label">Ienākumi</span>
+                    <!-- Flask ievieto ienākumu summu -->
                     <h3>{{ "%.2f"|format(ienakumi) }} €</h3>
                 </div>
 
+                <!-- Izdevumi -->
                 <div class="summary-card expense">
                     <span class="summary-label">Izdevumi</span>
+                    <!-- Flask ievieto izdevumu summu -->
                     <h3>{{ "%.2f"|format(izdevumi) }} €</h3>
                 </div>
 
+                <!-- Bilance -->
                 <div class="summary-card balance">
                     <span class="summary-label">Bilance</span>
+                    <!-- Flask ievieto bilanci -->
                     <h3>{{ "%.2f"|format(bilance) }} €</h3>
                 </div>
             </div>
         </section>
 
+        <!-- Ierakstu tabula -->
         <section class="card table-card">
             <div class="table-top">
                 <div>
@@ -93,6 +135,7 @@
                     <p>Skati visus pievienotos ierakstus un filtrē tos</p>
                 </div>
 
+                <!-- Filtrēšanas pogas -->
                 <div class="filter-buttons">
                     <a class="filter-btn {% if filtrs == 'Visi' %}active{% endif %}" href="/?filtrs=Visi">Visi</a>
                     <a class="filter-btn {% if filtrs == 'Ienākums' %}active{% endif %}" href="/?filtrs=Ienākums">Ienākumi</a>
@@ -100,6 +143,7 @@
                 </div>
             </div>
 
+            <!-- Ja ir dati -->
             {% if dati %}
             <div class="table-wrap">
                 <table>
@@ -113,9 +157,13 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <!-- Cikls cauri visiem ierakstiem -->
                         {% for ier in dati %}
                         <tr>
                             <td>{{ ier.datums }}</td>
+
+                            <!-- Atšķirīga krāsa ienākumiem un izdevumiem -->
                             <td>
                                 {% if ier.tips == "Ienākums" %}
                                     <span class="badge income-badge">{{ ier.tips }}</span>
@@ -123,16 +171,22 @@
                                     <span class="badge expense-badge">{{ ier.tips }}</span>
                                 {% endif %}
                             </td>
+
                             <td class="amount">{{ "%.2f"|format(ier.summa) }} €</td>
                             <td>{{ ier.apraksts }}</td>
+
+                            <!-- Dzēšanas poga -->
                             <td>
                                 <a class="delete-btn" href="/dzest/{{ ier.id }}">Dzēst</a>
                             </td>
                         </tr>
                         {% endfor %}
+
                     </tbody>
                 </table>
             </div>
+
+            <!-- Ja nav datu -->
             {% else %}
             <div class="empty-state">
                 <h3>Vēl nav ierakstu</h3>

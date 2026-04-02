@@ -1,17 +1,19 @@
+/* Universāls iestatījums – visiem elementiem vienāds box model */
 * {
     box-sizing: border-box;
 }
 
+/* CSS mainīgie (krāsas, ēnas utt.), lai dizains būtu vienots */
 :root {
-    --bg: #0f172a;
+    --bg: #0f172a; /* tumšais fons */
     --bg-soft: #111827;
-    --card: rgba(255, 255, 255, 0.9);
+    --card: rgba(255, 255, 255, 0.9); /* kartīšu fons */
     --card-strong: rgba(255, 255, 255, 0.96);
-    --text: #0f172a;
-    --text-soft: #475569;
+    --text: #0f172a; /* galvenais teksts */
+    --text-soft: #475569; /* sekundārais teksts */
     --white: #ffffff;
     --border: rgba(148, 163, 184, 0.2);
-    --shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+    --shadow: 0 20px 50px rgba(15, 23, 42, 0.18); /* ēna */
     --blue: #2563eb;
     --blue-dark: #1d4ed8;
     --green: #16a34a;
@@ -19,16 +21,19 @@
     --orange: #f59e0b;
 }
 
+/* Lapas pamata stils */
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--text);
+    /* Gradienta fons */
     background:
         linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #334155 100%);
     min-height: 100vh;
     position: relative;
 }
 
+/* Dekoratīvais fona efekts (gaismas plankumi) */
 .page-bg {
     position: fixed;
     inset: 0;
@@ -38,6 +43,7 @@ body {
     pointer-events: none;
 }
 
+/* Galvenais konteineris */
 .container {
     width: min(1150px, 92%);
     margin: 0 auto;
@@ -46,6 +52,7 @@ body {
     z-index: 1;
 }
 
+/* Augšējais "hero" bloks */
 .hero {
     display: flex;
     justify-content: space-between;
@@ -55,15 +62,17 @@ body {
     padding: 28px 30px;
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px); /* stikla efekts */
     border: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: var(--shadow);
 }
 
+/* Mazāks hero variants */
 .small-hero {
     margin-bottom: 34px;
 }
 
+/* Mazais virsraksts virs galvenā */
 .eyebrow {
     margin: 0 0 8px;
     color: rgba(255, 255, 255, 0.8);
@@ -73,361 +82,178 @@ body {
     font-weight: 700;
 }
 
+/* Galvenais virsraksts */
 .hero h1 {
     margin: 0;
     color: var(--white);
     font-size: 42px;
-    line-height: 1.05;
 }
 
+/* Apakšteksts */
 .subtitle {
     margin: 12px 0 0;
     max-width: 650px;
     color: rgba(255, 255, 255, 0.82);
-    font-size: 16px;
-    line-height: 1.6;
 }
 
+/* Navigācijas pogas */
 .nav {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
 }
 
+/* Pogu stils */
 .nav-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     text-decoration: none;
     padding: 12px 18px;
     border-radius: 14px;
     background: var(--white);
-    color: var(--text);
     font-weight: 700;
     transition: 0.2s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* Hover efekts */
 .nav-btn:hover {
     transform: translateY(-2px);
 }
 
+/* Sekundārā poga */
 .nav-btn-secondary {
     background: rgba(255, 255, 255, 0.18);
     color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
+/* Kartīšu dizains */
 .card {
     background: var(--card);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
     border-radius: 26px;
     box-shadow: var(--shadow);
 }
 
+/* Kļūdas ziņojums */
 .alert {
-    margin-bottom: 22px;
-    padding: 14px 18px;
+    padding: 14px;
     border-radius: 16px;
     background: rgba(220, 38, 38, 0.14);
     color: #fee2e2;
-    border: 1px solid rgba(254, 202, 202, 0.22);
-    font-weight: 600;
 }
 
+/* Galvenais grid layout */
 .top-grid {
     display: grid;
     grid-template-columns: 1.25fr 0.9fr;
     gap: 22px;
-    margin-bottom: 24px;
 }
 
+/* Formas bloks */
 .form-card {
     padding: 26px;
 }
 
-.section-head h2,
-.table-top h2 {
-    margin: 0;
-    font-size: 26px;
-}
-
-.section-head p,
-.table-top p {
-    margin: 8px 0 0;
-    color: var(--text-soft);
-}
-
-.modern-form {
-    margin-top: 22px;
-}
-
+/* Forma kā grid */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
 }
 
+/* Input grupas */
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
 }
 
-.input-group label {
-    font-size: 14px;
-    font-weight: 700;
-    color: #334155;
-}
-
-.input-full {
-    grid-column: 1 / -1;
-}
-
+/* Input lauki */
 input,
 select {
-    width: 100%;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 14px 16px;
+    padding: 14px;
     border-radius: 16px;
-    font-size: 15px;
-    outline: none;
-    transition: 0.2s ease;
+    border: 1px solid #ccc;
 }
 
+/* Fokusā (klikšķinot) */
 input:focus,
 select:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
+/* Galvenā poga */
 .primary-btn {
     margin-top: 18px;
-    border: none;
-    padding: 15px 18px;
+    padding: 15px;
     border-radius: 16px;
     background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-    color: var(--white);
-    font-size: 15px;
+    color: white;
     font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s ease;
 }
 
-.primary-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.24);
-}
-
-.summary-grid {
-    display: grid;
-    gap: 16px;
-}
-
+/* Kopsavilkuma kartītes */
 .summary-card {
     padding: 22px;
     border-radius: 24px;
-    color: var(--white);
-    box-shadow: var(--shadow);
-    min-height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    color: white;
 }
 
-.summary-card h3 {
-    margin: 10px 0 0;
-    font-size: 30px;
-    line-height: 1.1;
-}
-
-.summary-label {
-    font-size: 14px;
-    font-weight: 700;
-    opacity: 0.92;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
+/* Ienākumu krāsa */
 .income {
     background: linear-gradient(135deg, #16a34a, #22c55e);
 }
 
+/* Izdevumu krāsa */
 .expense {
     background: linear-gradient(135deg, #dc2626, #ef4444);
 }
 
+/* Bilances krāsa */
 .balance {
     background: linear-gradient(135deg, #f59e0b, #f97316);
 }
 
-.big-summary {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.table-card {
-    padding: 26px;
-}
-
-.table-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 18px;
-}
-
-.filter-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    text-decoration: none;
-    padding: 10px 14px;
-    border-radius: 14px;
-    background: #e2e8f0;
-    color: #0f172a;
-    font-weight: 700;
-    transition: 0.2s ease;
-}
-
-.filter-btn:hover {
-    transform: translateY(-1px);
-}
-
-.filter-btn.active {
-    background: var(--blue);
-    color: var(--white);
-}
-
-.table-wrap {
-    overflow-x: auto;
-}
-
+/* Tabulas dizains */
 table {
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
-    border-radius: 18px;
-    background: var(--card-strong);
 }
 
+/* Tabulas virsraksti */
 thead th {
     background: #eff6ff;
-    color: #1e3a8a;
     padding: 16px;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 800;
 }
 
+/* Tabulas dati */
 tbody td {
     padding: 16px;
-    border-top: 1px solid rgba(226, 232, 240, 0.95);
-    font-size: 15px;
 }
 
+/* Hover efekts rindām */
 tbody tr:hover {
     background: #f8fafc;
 }
 
-.amount {
-    font-weight: 800;
-    color: #0f172a;
-}
-
-.badge {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.income-badge {
-    background: rgba(22, 163, 74, 0.12);
-    color: #15803d;
-}
-
-.expense-badge {
-    background: rgba(220, 38, 38, 0.12);
-    color: #b91c1c;
-}
-
+/* Dzēšanas poga */
 .delete-btn {
-    display: inline-block;
-    text-decoration: none;
-    padding: 10px 14px;
-    border-radius: 12px;
     background: var(--red);
-    color: var(--white);
-    font-weight: 700;
-    transition: 0.2s ease;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
 }
 
-.delete-btn:hover {
-    background: #b91c1c;
-    transform: translateY(-1px);
-}
-
+/* Tukšā stāvokļa teksts */
 .empty-state {
     text-align: center;
-    padding: 40px 20px 28px;
-    color: var(--text-soft);
 }
 
-.empty-state h3 {
-    margin: 0 0 10px;
-    color: var(--text);
-    font-size: 24px;
-}
-
+/* Responsive dizains (planšetēm un telefonam) */
 @media (max-width: 900px) {
-    .top-grid,
-    .big-summary {
+    .top-grid {
         grid-template-columns: 1fr;
     }
-
-    .hero,
-    .table-top {
-        flex-direction: column;
-    }
 }
 
+/* Mazākiem ekrāniem */
 @media (max-width: 640px) {
-    .container {
-        width: 94%;
-        padding-top: 22px;
-    }
-
-    .hero {
-        padding: 22px;
-        border-radius: 22px;
-    }
-
     .hero h1 {
         font-size: 32px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .summary-card h3 {
-        font-size: 26px;
-    }
-
-    .table-card,
-    .form-card {
-        padding: 20px;
-    }
-
-    thead th,
-    tbody td {
-        padding: 12px;
     }
 }
